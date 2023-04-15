@@ -5,9 +5,6 @@ import yaml
 import os
 import openai
 
-os.environ[
-  "OPENAI_API_KEY"] = "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"
-
 from langchain.agents.agent_toolkits.openapi.spec import reduce_openapi_spec
 from langchain.requests import RequestsWrapper
 from langchain.llms.openai import OpenAI
@@ -21,8 +18,7 @@ docs_api_spec = reduce_openapi_spec(raw_docs_api_spec)
 
 requests_wrapper = RequestsWrapper(
   headers={
-    'Authorization':
-    f'Bearer dG9rOjk0ZjAwOGVhX2I4MDdfNDZiY185ODU1X2M4ZWJkMjhlZGJmYToxOjA='
+    'Authorization': os.environ['INTERCOM_TEST_TOKEN']
   })
 
 enc = tiktoken.encoding_for_model('text-davinci-003')
