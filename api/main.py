@@ -50,7 +50,10 @@ def run_command():
     if user_query is None:
         return jsonify({"error": "No command provided"}), 400
 
-    docs_agent = planner.create_openapi_agent(docs_api_spec, requests_wrapper, llm)
+    try:
+        docs_agent = planner.create_openapi_agent(docs_api_spec, requests_wrapper, llm)
+    except ValueError as openapi_error:
+        return jsonify({"error": str(openapi_error)}), 400
     result = docs_agent.run(user_query)
 
     return jsonify({"result": result})
