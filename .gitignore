@@ -1,2 +1,4 @@
 .hypothesis
 *fly_venv
+*venv
+*.pytest_cache
