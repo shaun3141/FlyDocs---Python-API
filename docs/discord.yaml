@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Discord Message Sharer
+  description: A simple API for shaing content with a Discord Channel.
+  version: 1.0.0
+
+servers:
+  - url: https://fly-docs.vercel.app
+    description: Discord API base URL
+
+paths:
+  /api/discord:
+    post:
+      summary: Send message to channel
+      description: Send a message to a channel using the Discord API.
+      operationId: sendSMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: The content of the message to share in the channel
+      responses:
+        "201":
+          description: SMS message sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sid:
+                    type: string
+                    description: The unique identifier for the SMS message.
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        "401":
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        "429":
+          description: Too many requests.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
