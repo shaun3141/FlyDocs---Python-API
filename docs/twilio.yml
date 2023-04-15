@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Twilio Send SMS API
+  description: A simple API for sending SMS messages via Twilio.
+  version: 1.0.0
+
+servers:
+  - url: https://api.twilio.com/2010-04-01
+    description: Twilio API base URL
+
+paths:
+  /Accounts/ACba730c715dc08b60323f7279cbf7c173/Messages.json:
+    post:
+      summary: Send SMS
+      description: Send an SMS message using the Twilio API.
+      operationId: sendSMS
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - From
+                - To
+                - Body
+              properties:
+                From:
+                  type: string
+                  description: The phone number to send the SMS message from (in E.164 format).
+                To:
+                  type: string
+                  description: The phone number to send the SMS message to (in E.164 format).
+                Body:
+                  type: string
+                  description: The content of the SMS message.
+      responses:
+        "201":
+          description: SMS message sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sid:
+                    type: string
+                    description: The unique identifier for the SMS message.
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        "401":
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        "429":
+          description: Too many requests.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A detailed error message.
