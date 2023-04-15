@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://api.twilio.com/2010-04-01
+  - url: https://fly-docs.vercel.app
     description: Twilio API base URL
 
 paths:
-  /Accounts/ACba730c715dc08b60323f7279cbf7c173/Messages.json:
+  /api/twilio:
     post:
       summary: Send SMS
       description: Send an SMS message using the Twilio API.
@@ -17,7 +17,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               type: object
               required:
