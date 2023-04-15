@@ -17,12 +17,7 @@ CORS(app)
 
 @app.route("/")
 def index():
-    return "Hello from Flask!"
-
-
-@app.route("/run")
-def run():
-    return "Hello from Run2!"
+    return "This is the LangChain API wrapper for FlyDocs"
 
 
 # post payload: command, service & token
@@ -30,7 +25,7 @@ def run():
 {
   "service": "intercom",
   "command": "get admin",
-  "token": "Bearer dG9rOjk0ZjAwOGVhX2I4MDdfNDZiY185ODU1X2M4ZWJkMjhlZGJmYToxOjA="
+  "token": "Bearer dxxxxxxxxxxxxxxxx="
 }
 """
 
